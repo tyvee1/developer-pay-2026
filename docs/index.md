@@ -47,7 +47,7 @@ Asked a simpler question, above or below $85,296, it was right 78% of the time.
 
 ![Scatter plot: predicted against actual pay](assets/q4_accuracy.png)
 
-## Three developers, three predictions
+## What would three developers earn?
 
 A US software architect, twelve years in, remote, using AI agents: about $241,930. The same person in Germany: $118,104. A US full-stack developer two years in, in an office: $71,869.
 
