@@ -130,3 +130,4 @@ model.
   `data/` is a derivative database and is shared under the same licence; see `data/README.md`.
 - **Author:** Ty Verdell.
 - Thanks to every developer who took the survey. Built for the Udacity Data Scientist Nanodegree.
+- **Disclaimer:** For learning only: these are estimates from survey answers, not career or financial advice. Not affiliated with or endorsed by Stack Overflow.

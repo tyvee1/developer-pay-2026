@@ -64,3 +64,5 @@ The architect estimate sits above what similar respondents report ($185,000). A 
 **Your turn:** before your next pay conversation, find your country and experience in these charts. Does your pay fit the pattern? The [code and data are on GitHub](https://github.com/tyvee1/developer-pay-2026) if you want to test your own profile.
 
 *Ty Verdell · Data: [Stack Overflow Developer Survey 2026](https://survey.stackoverflow.co/), Open Database License.*
+
+*For learning only: these are estimates from survey answers, not career or financial advice. Not affiliated with or endorsed by Stack Overflow.*
