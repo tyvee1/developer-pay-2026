@@ -1,0 +1,7 @@
+# Full survey file: 122 MB, over the GitHub file limit (see data/README.md)
+data/raw/
+# Local environment and editor state
+.venv/
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store

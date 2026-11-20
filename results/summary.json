@@ -1,0 +1,199 @@
+{
+  "ai_agents": {
+    "adjusted_gap": 0.14307887442023848,
+    "count_non_users": 6545,
+    "count_users": 2872,
+    "median_non_users": 80632.0,
+    "median_users": 103726.5,
+    "raw_gap": 0.28641854350630025
+  },
+  "classifier": {
+    "Gradient boosting classifier": {
+      "accuracy": 0.7809219534459151,
+      "f1": 0.7870452528837621,
+      "precision": 0.8107861060329068,
+      "recall": 0.7646551724137931
+    },
+    "Majority-class baseline": {
+      "accuracy": 0.4705613874942948,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0
+    }
+  },
+  "cleaning": [
+    {
+      "rows": 30903,
+      "step": "All respondents"
+    },
+    {
+      "rows": 24866,
+      "step": "Employed or self-employed"
+    },
+    {
+      "rows": 22839,
+      "step": "Create code at least occasionally"
+    },
+    {
+      "rows": 11712,
+      "step": "Reported pay"
+    },
+    {
+      "rows": 10954,
+      "step": "Pay between $5,000 and $1,000,000"
+    }
+  ],
+  "country_median": {
+    "Australia": 104550.0,
+    "Brazil": 38901.0,
+    "Canada": 92188.0,
+    "France": 60276.0,
+    "Germany": 84159.0,
+    "India": 22981.0,
+    "Italy": 48903.0,
+    "Netherlands": 81031.5,
+    "Other": 62550.0,
+    "Poland": 65733.0,
+    "Spain": 68237.0,
+    "Sweden": 71965.0,
+    "Switzerland": 138040.0,
+    "Ukraine": 45048.5,
+    "United Kingdom of Great Britain and Northern Ireland": 93364.0,
+    "United States of America": 151000.0
+  },
+  "cv": [
+    {
+      "cv_mae_log": 0.608,
+      "cv_r2_mean": -0.001,
+      "cv_r2_std": 0.001,
+      "model": "Dummy (predict the mean)"
+    },
+    {
+      "cv_mae_log": 0.412,
+      "cv_r2_mean": 0.482,
+      "cv_r2_std": 0.015,
+      "model": "Ridge regression"
+    },
+    {
+      "cv_mae_log": 0.389,
+      "cv_r2_mean": 0.526,
+      "cv_r2_std": 0.013,
+      "model": "Gradient boosting"
+    }
+  ],
+  "experience_curve_us": {
+    "years_0": 73232.0871726387,
+    "years_10": 165083.03545335817,
+    "years_20": 167010.12747373158
+  },
+  "importance": [
+    {
+      "feature": "CountryGroup",
+      "r2_drop": 0.6014,
+      "std": 0.0215
+    },
+    {
+      "feature": "WorkExp",
+      "r2_drop": 0.0769,
+      "std": 0.0065
+    },
+    {
+      "feature": "YearsCode",
+      "r2_drop": 0.0511,
+      "std": 0.0067
+    },
+    {
+      "feature": "OrgSize",
+      "r2_drop": 0.0432,
+      "std": 0.0044
+    },
+    {
+      "feature": "Role",
+      "r2_drop": 0.02,
+      "std": 0.0031
+    },
+    {
+      "feature": "Education",
+      "r2_drop": 0.0192,
+      "std": 0.0027
+    },
+    {
+      "feature": "Industry",
+      "r2_drop": 0.0136,
+      "std": 0.0022
+    },
+    {
+      "feature": "WorkSetting",
+      "r2_drop": 0.0126,
+      "std": 0.0031
+    },
+    {
+      "feature": "AIAgents",
+      "r2_drop": 0.0111,
+      "std": 0.0028
+    },
+    {
+      "feature": "AIDaily",
+      "r2_drop": 0.0039,
+      "std": 0.0023
+    },
+    {
+      "feature": "Employment",
+      "r2_drop": 0.0025,
+      "std": 0.001
+    }
+  ],
+  "median_threshold_usd": 85296.00000000003,
+  "remote_us": {
+    "adjusted_gap": 0.03938515859772185,
+    "ci_high": 59500.0,
+    "ci_low": 38500.0,
+    "count_in_person": 406,
+    "count_remote": 1322,
+    "gap": 50000.0,
+    "median_in_person": 120000.0,
+    "median_remote": 170000.0,
+    "raw_gap_pct": 0.41666666666666674
+  },
+  "rows": {
+    "developers": 10954,
+    "respondents": 30903,
+    "test": 2191,
+    "train": 8763
+  },
+  "scenarios": {
+    "Same architect, living in Germany": {
+      "high_90th": 165104.51274424832,
+      "low_10th": 86209.85848494206,
+      "predicted_pay": 118103.51345519438,
+      "similar_count": 29.0,
+      "similar_median": 102355.0
+    },
+    "US full-stack developer, 2 years, in-person": {
+      "high_90th": 113515.87748578395,
+      "low_10th": 49522.07340810282,
+      "predicted_pay": 71868.82343804327,
+      "similar_count": 152.0,
+      "similar_median": 90000.0
+    },
+    "US software architect, 12 years, remote, uses AI agents": {
+      "high_90th": 405861.2747167772,
+      "low_10th": 138577.62587040264,
+      "predicted_pay": 241929.56926680333,
+      "similar_count": 39.0,
+      "similar_median": 185000.0
+    }
+  },
+  "test_baseline": {
+    "mae_usd": 53212.96329062865,
+    "median_abs_error_usd": 33384.71101840367,
+    "median_abs_pct_error": 0.4032601911671118,
+    "r2_log": -0.005100689803467562
+  },
+  "test_regression": {
+    "mae_usd": 35156.64728339832,
+    "median_abs_error_usd": 21111.622753657837,
+    "median_abs_pct_error": 0.2554232675077574,
+    "r2_log": 0.5070151286780591
+  }
+}
