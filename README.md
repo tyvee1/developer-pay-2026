@@ -3,11 +3,16 @@
 An analysis of the Stack Overflow Developer Survey 2026, written up for a general audience in the blog post
 **[Where you live beats what you code](https://tyvee1.github.io/developer-pay-2026/)**.
 
+**Contents:** [Motivation](#motivation) · [Installation and libraries](#installation-and-libraries) ·
+[Files](#files) · [How to run](#how-to-run) · [Technical details](#technical-details-what-i-tried) ·
+[Results](#results) · [Licensing, authors and acknowledgements](#licensing-authors-and-acknowledgements)
+
 ## Motivation
 
-Developers, hiring managers and people moving into software all want to know what a developer is paid and
-what changes that number. The 2026 survey asks new questions about AI agents and work setting, so this
-project asks five business questions:
+In 2026 developers keep hearing the same advice for earning more: adopt AI agents, go remote, pick the right
+role. I work in cloud architecture and wanted to know which of those actually moves pay, and by how much,
+once you compare like with like. The 2026 survey is the first to ask about AI agents and work setting in
+detail, so it can answer that. This project asks five business questions:
 
 1. **What drives developer pay in 2026?**
 2. **Do developers who use AI agents earn more, and how much of that survives once experience, role and country are taken into account?**
@@ -15,9 +20,10 @@ project asks five business questions:
 4. **How accurately can a model predict a developer's pay?**
 5. **What would three specific developers be predicted to earn?**
 
-## Libraries
+## Installation and libraries
 
-Python 3.11 with the versions in `requirements.txt`:
+Python 3.11. Every library below ships with the Anaconda distribution; `requirements.txt` pins the exact
+versions the notebook was run with, so a plain `pip` install reproduces it outside Anaconda too.
 
 | Library | Used for |
 |---|---|
@@ -29,6 +35,8 @@ Python 3.11 with the versions in `requirements.txt`:
 
 ## Files
 
+The work most readers want is the notebook; the blog post is the plain-English version.
+
 | Path | Description |
 |---|---|
 | `developer_pay_2026.ipynb` | The full analysis, following CRISP-DM: business understanding, data understanding (gather, assess), data preparation (clean), modeling, evaluation, and the results for each question |
@@ -38,6 +46,7 @@ Python 3.11 with the versions in `requirements.txt`:
 | `docs/index.md`, `docs/_config.yml` | The blog post, published with GitHub Pages |
 | `docs/assets/*.png` | The figures, saved by the notebook and used in the blog post |
 | `requirements.txt` | Library versions |
+| `LICENSE` | MIT licence for the code |
 
 ## How to run
 
@@ -55,9 +64,30 @@ Run all cells, or run the whole notebook without opening it:
 ```bash
 jupyter nbconvert --to notebook --execute --inplace developer_pay_2026.ipynb
 ```
- The notebook loads the shipped extract. To rebuild the extract from the full survey, download
+
+The notebook loads the shipped extract. To rebuild the extract from the full survey, download
 the 2026 results from [survey.stackoverflow.co](https://survey.stackoverflow.co/), save
 `survey_results_public.csv` to `data/raw/`, and run the notebook: it checks the file's SHA-256 before using it.
+
+## Technical details: what I tried
+
+**Data issues.** 11,712 developers reported a salary, but pay was entered by hand and converted
+to US dollars, and values ranged from $1 to more than $30 million a year. Keeping $5,000 to $1,000,000 a year
+removed 758 answers that were almost certainly typos, monthly figures or currency
+mistakes. Later survey questions were often skipped; dropping incomplete rows would have kept only people
+who finished the survey, so a skipped answer is kept as its own "Missing" category, and missing experience
+is filled with the median plus a flag saying it was missing.
+
+**Methods.** Pay is heavily skewed, so every model predicts the logarithm of pay and converts back to
+dollars for reporting. Three models were compared with 5-fold cross-validation on the training rows only:
+predicting the average (R² 0.00), ridge regression (0.48) and gradient boosting
+(0.53). Boosting won because it can learn interactions, such as experience paying more in some
+countries than others. Feature importance is measured by shuffling one column at a time on held-out rows.
+
+**What worked and what didn't.** Comparing raw medians overstated both headline effects: the AI-agent gap
+fell from 29% to 14% and the US remote gap from 42% to 4%
+once the model held everything else fixed. The model is weakest when it stacks several high-paying traits
+in one profile: its estimate for a senior US architect is above what similar respondents actually report.
 
 ## Results
 
@@ -91,13 +121,12 @@ Limitations: the survey is self-selected, pay is converted to US dollars without
 and every gap above is an association rather than a cause. Age and gender were deliberately left out of the
 model.
 
-## Acknowledgements
+## Licensing, authors and acknowledgements
 
-- Data: [Stack Overflow Developer Survey 2026](https://survey.stackoverflow.co/), made available under the
+- **Code:** MIT licence; see `LICENSE`.
+- **Data:** [Stack Overflow Developer Survey 2026](https://survey.stackoverflow.co/), made available under the
   [Open Database License (ODbL) 1.0](https://opendatacommons.org/licenses/odbl/1-0/), with individual contents under
   the [Database Contents License (DbCL) 1.0](https://opendatacommons.org/licenses/dbcl/1-0/). The extract in
   `data/` is a derivative database and is shared under the same licence; see `data/README.md`.
-- Thanks to every developer who took the survey.
-- Built for the Udacity Data Scientist Nanodegree.
-
-Author: Ty Verdell
+- **Author:** Ty Verdell.
+- Thanks to every developer who took the survey. Built for the Udacity Data Scientist Nanodegree.
